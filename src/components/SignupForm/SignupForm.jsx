@@ -21,15 +21,14 @@ const SignupForm = (props) => {
 	};
 
 	const handleSubmit = async (e) => {
-        e.preventDefault()
-        try {
-          const newUserResponse = await authService.signup(formData)
-          props.setUser(newUserResponse.user);
-          navigate('/')
-        } catch (err) {
-          updateMessage(err.message)
-        }
-      }
+		e.preventDefault();
+		try {
+			const newUserResponse = await authService.signup(formData);
+			props.setUser(newUserResponse.user);
+			navigate("/");
+		} catch (err) {
+			updateMessage(err.message);
+		}
 	};
 
 	const { username, password, passwordConf } = formData;
@@ -83,5 +82,4 @@ const SignupForm = (props) => {
 		</main>
 	);
 };
-
 export default SignupForm;
