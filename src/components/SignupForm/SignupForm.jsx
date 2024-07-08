@@ -21,13 +21,15 @@ const SignupForm = (props) => {
 	};
 
 	const handleSubmit = async (e) => {
-		e.preventDefault();
-		try {
-			props.setUser(formData); // this will modify the state in the App component
-			navigate("/"); // upon redirect you will see the "Dashboard" page
-		} catch (err) {
-			updateMessage(err.message);
-		}
+        e.preventDefault()
+        try {
+          const newUserResponse = await authService.signup(formData)
+          props.setUser(newUserResponse.user);
+          navigate('/')
+        } catch (err) {
+          updateMessage(err.message)
+        }
+      }
 	};
 
 	const { username, password, passwordConf } = formData;
